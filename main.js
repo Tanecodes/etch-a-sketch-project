@@ -39,6 +39,22 @@ eraserBtn.addEventListener("click",function() {
   }
 });
 
+// pixels button and modal display
+const pixelBtn = document.querySelector(".pixelbtn");
+const pixelModal = document.getElementById("pixel-modal");
+const closeModal = document.querySelector(".modal-button:last-child");
+
+function hidePixelModal() {
+  pixelModal.classList.add("hidden");
+};
+function showPixelModal() {
+  pixelModal.classList.remove("hidden");
+};
+pixelBtn.addEventListener("click",showPixelModal);
+closeModal.addEventListener("click",hidePixelModal);
+
+
+
 // drawing
 let isSketching = true;
 gridContainer.addEventListener("mouseover", (e) => {
