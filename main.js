@@ -4,7 +4,9 @@
 // the odin project(TOP), ETCH-A-SKETCH PROJECT
 
 const gridContainer = document.querySelector(".grid-container");
-const pixels = 130;
+let pixels = 100;
+let isSketching = true;
+let isErasing = false;
 
 // grid
 function generateGrid(gridSize) {
@@ -29,36 +31,48 @@ clearBtn.addEventListener("click",function() {
 
 // eraser button
 const eraserBtn = document.querySelector(".eraserbtn");
-let isErasing = false;
 eraserBtn.addEventListener("click",function() {
-  isErasing = !isErasing;
-  if(!isErasing) {
-    eraserBtn.textContent = "ERASER";
-  }else{
-    eraserBtn.textContent = "PEN"
-  }
+    isErasing = !isErasing;
+    eraserBtn.textContent = "PEN";
+    eraserBtn.textContent = isErasing ? "PEN":"ERASER";
 });
 
 // pixels button and modal display
 const pixelBtn = document.querySelector(".pixelbtn");
 const pixelModal = document.getElementById("pixel-modal");
-const closeModal = document.querySelector(".modal-button:last-child");
+const closeBtn = document.querySelector(".modal-button:last-child");
 
 function hidePixelModal() {
   pixelModal.classList.add("hidden");
+  isSketching = true;
 };
 function showPixelModal() {
-  pixelModal.classList.remove("hidden");
+  pixelModal.classList.toggle("hidden");
+  isSketching = false;
 };
 pixelBtn.addEventListener("click",showPixelModal);
-closeModal.addEventListener("click",hidePixelModal);
+closeBtn.addEventListener("click",hidePixelModal);
 
+// change the pixels in the modal
+const userInput = document.querySelector(".change-pixel-input");
+const applyBtn = document.querySelector(".modal-button:first-child");
+function applyPixelChange() {
+  if(userInput.value >= 50 && userInput.value <= 100) {
+    pixels = parseInt(userInput.value);
+    gridContainer.innerHTML = "";
+    generateGrid(pixels);
+    pixelModal.classList.add("hidden");
+  }else{
+    alert("numbers need to be between 50 and 100 😊");
+  }
+  userInput.value = "";
+  isSketching = true;
+};
+applyBtn.addEventListener("click",applyPixelChange);
 
-
-// drawing
-let isSketching = true;
+// drawing 
 gridContainer.addEventListener("mouseover", (e) => {
   if (isSketching && e.target.classList.contains("cell-item")) {
-    e.target.style.backgroundColor = isErasing ? "white" : "black";
+    e.target.style.backgroundColor = isErasing ? "white" : "grey";
   }
 });
