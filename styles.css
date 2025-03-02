@@ -1,0 +1,70 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(45deg,hsl(195, 100%, 71%),hsl(199, 94%, 47%),hsl(0, 0%, 100%));
+}
+
+.title{
+  font-family: "Chewy", system-ui;
+  font-weight: bold;
+  font-size: 3rem;
+  font-style: normal;
+  color: white;
+  text-shadow: 0px 0px 10px black;
+  user-select: none;
+}
+
+.buttons-container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+}
+
+.buttons{
+  font-family: "Chewy", system-ui;
+  font-size: 1.5rem;
+  padding: 5px 25px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  transition: text-shadow 0.30s ease-out;
+  transition: transform 0.30s ease-out;
+  cursor: pointer;
+}
+
+.buttons:hover{
+  text-shadow: 0px 0px 10px black;
+  transform: scale(1.3);
+}
+
+.buttons:active{
+  text-shadow: 0px 0px 10px white;
+}
+
+.grid-container{
+  width: 1200px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 10px black;
+  cursor: crosshair;
+}
+
+
+
+.grid-items{
+  
+}
