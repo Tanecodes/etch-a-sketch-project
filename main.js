@@ -4,7 +4,7 @@
 // the odin project(TOP), ETCH-A-SKETCH PROJECT
 
 const gridContainer = document.querySelector(".grid-container");
-const pixels = 90;
+const pixels = 130;
 
 // grid
 function generateGrid(gridSize) {
@@ -14,15 +14,15 @@ function generateGrid(gridSize) {
     const cellItem = document.createElement("div");
     cellItem.classList.add("cell-item");
     cellItem.style.height = `${ 600/gridSize }px`;
-    cellItem.style.width = `${ 800/gridSize }px`;
+    cellItem.style.width = `${ 1200/gridSize }px`;
     gridContainer.appendChild(cellItem);
   }
 };
 generateGrid(pixels);
 
-// reset button
-const resetBtn = document.querySelector(".resetbtn");
-resetBtn.addEventListener("click",function() {
+// clear button
+const clearBtn = document.querySelector(".clearbtn");
+clearBtn.addEventListener("click",function() {
   gridContainer.innerHTML = "";
   generateGrid(pixels);
 });

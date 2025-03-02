@@ -56,13 +56,15 @@ body{
   display: flex;
   flex-wrap: wrap;
   height: 600px;
-  width: 800px;
+  width: 1200px;
   background-color: white;
   box-shadow: 0px 0px 10px black;
   cursor: crosshair;  
 }
 
-.cell-item{}
+.cell-item{
+  background-color: white;
+}
 
 .hidden{
   display: none !important;
@@ -91,6 +93,3 @@ body{
   user-select: none;
 }
 
-#pixel-modal p{
-
-}
