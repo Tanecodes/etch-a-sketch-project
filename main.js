@@ -57,6 +57,18 @@ function showColorModal() {
 colorBtn.addEventListener("click",showColorModal);
 closeColorModal.addEventListener("click",hideColorModal);
 
+let colorBox = document.querySelectorAll(".color-box");
+
+  colorBox.forEach(item => {
+    item.addEventListener("click",function() {
+      colorBox.forEach(body => body.style.border = "none");
+      this.style.border = "3px solid white";
+    });    
+  });
+  // now for color changing and then finally done jesus christ lol
+  
+
+
 // clear button
 const clearBtn = document.querySelector(".clearbtn");
 clearBtn.addEventListener("click",function() {

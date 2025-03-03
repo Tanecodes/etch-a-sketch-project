@@ -92,8 +92,8 @@ button{
 }
 
 #color-modal{
-  height: 400px;
-  width: auto;
+  height: 300px;
+  width: 300px;
   padding: 20px;
   position: fixed;
   display: flex;
@@ -105,6 +105,34 @@ button{
   border-radius: 3%;
   box-shadow: 0px 0px 10px black;
   transition: opacity 0.3s ease-in;
+}
+
+#color-modal h1{
+  font-family: "Chewy", system-ui;
+  font-weight: bold;
+  font-size: 2.5rem;
+  font-style: normal;
+  color: white;
+  text-shadow: 0px 0px 10px black;
+  user-select: none;
+}
+
+.color-pallet{
+  display: grid;
+  grid-template-columns: repeat(4,40px);
+  grid-template-rows: repeat(2,40px);
+  gap: 8px;
+}
+
+.color-box{
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px black;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.color-box:hover{
+  transform: scale(1.4);
 }
 
 #pixel-modal h1{
