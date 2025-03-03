@@ -91,6 +91,22 @@ button{
   transition: opacity 0.3s ease-in;
 }
 
+#color-modal{
+  height: 400px;
+  width: auto;
+  padding: 20px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background:linear-gradient(45deg,hsl(195, 100%, 71%),hsl(199, 94%, 47%),hsl(0, 0%, 100%));
+  border: 5px solid white;
+  border-radius: 3%;
+  box-shadow: 0px 0px 10px black;
+  transition: opacity 0.3s ease-in;
+}
+
 #pixel-modal h1{
   font-family: "Chewy", system-ui;
   font-weight: bold;

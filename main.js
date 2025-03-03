@@ -5,8 +5,8 @@
 
 const gridContainer = document.querySelector(".grid-container");
 let pixels = 100;
-let isSketching = true;
 let isErasing = false;
+let isSketching = false;
 
 // grid
 function generateGrid(gridSize) {
@@ -21,6 +21,41 @@ function generateGrid(gridSize) {
   }
 };
 generateGrid(pixels);
+
+// drawing 
+gridContainer.addEventListener("mousedown", function(e) {
+  e.preventDefault();
+  if (e.target.classList.contains("cell-item")) {
+    e.target.style.backgroundColor = isErasing ? "white" : "black";
+    isSketching = true;
+  }
+});
+gridContainer.addEventListener("mouseup",function (){
+  isSketching = false;
+});
+gridContainer.addEventListener("mousemove", function(e) {
+  if(isSketching && e.target.classList.contains("cell-item")) {
+    e.target.style.backgroundColor = isErasing ? "white" : "black";
+  }
+});
+gridContainer.addEventListener("mouseleave",function() {
+  isSketching = false;
+})
+
+
+// colors modal
+const colorModal = document.getElementById("color-modal");
+const closeColorModal = document.getElementById("close-color-button");
+const colorBtn = document.querySelector(".colorbtn");
+
+function hideColorModal() {
+  colorModal.classList.add("hidden");
+};
+function showColorModal() {
+  colorModal.classList.toggle("hidden");
+};
+colorBtn.addEventListener("click",showColorModal);
+closeColorModal.addEventListener("click",hideColorModal);
 
 // clear button
 const clearBtn = document.querySelector(".clearbtn");
@@ -44,11 +79,9 @@ const closeBtn = document.querySelector(".modal-button:last-child");
 
 function hidePixelModal() {
   pixelModal.classList.add("hidden");
-  isSketching = true;
 };
 function showPixelModal() {
   pixelModal.classList.toggle("hidden");
-  isSketching = false;
 };
 pixelBtn.addEventListener("click",showPixelModal);
 closeBtn.addEventListener("click",hidePixelModal);
@@ -66,13 +99,6 @@ function applyPixelChange() {
     alert("numbers need to be between 50 and 100 😊");
   }
   userInput.value = "";
-  isSketching = true;
 };
 applyBtn.addEventListener("click",applyPixelChange);
 
-// drawing 
-gridContainer.addEventListener("mouseover", (e) => {
-  if (isSketching && e.target.classList.contains("cell-item")) {
-    e.target.style.backgroundColor = isErasing ? "white" : "grey";
-  }
-});
