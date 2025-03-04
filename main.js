@@ -8,6 +8,7 @@ let pixels = 100;
 let isErasing = false;
 let isSketching = false;
 
+
 // grid
 function generateGrid(gridSize) {
   gridContainer.innerHTML = "";
@@ -21,26 +22,6 @@ function generateGrid(gridSize) {
   }
 };
 generateGrid(pixels);
-
-// drawing 
-gridContainer.addEventListener("mousedown", function(e) {
-  e.preventDefault();
-  if (e.target.classList.contains("cell-item")) {
-    e.target.style.backgroundColor = isErasing ? "white" : "black";
-    isSketching = true;
-  }
-});
-gridContainer.addEventListener("mouseup",function (){
-  isSketching = false;
-});
-gridContainer.addEventListener("mousemove", function(e) {
-  if(isSketching && e.target.classList.contains("cell-item")) {
-    e.target.style.backgroundColor = isErasing ? "white" : "black";
-  }
-});
-gridContainer.addEventListener("mouseleave",function() {
-  isSketching = false;
-})
 
 
 // colors modal
@@ -58,31 +39,24 @@ colorBtn.addEventListener("click",showColorModal);
 closeColorModal.addEventListener("click",hideColorModal);
 
 let colorBox = document.querySelectorAll(".color-box");
+let selectColor = "#000000";
 
   colorBox.forEach(item => {
     item.addEventListener("click",function() {
       colorBox.forEach(body => body.style.border = "none");
       this.style.border = "3px solid white";
+      selectColor = window.getComputedStyle(this).backgroundColor;
     });    
   });
-  // now for color changing and then finally done jesus christ lol
-  
 
 
-// clear button
+  // clear button
 const clearBtn = document.querySelector(".clearbtn");
 clearBtn.addEventListener("click",function() {
   gridContainer.innerHTML = "";
   generateGrid(pixels);
 });
 
-// eraser button
-const eraserBtn = document.querySelector(".eraserbtn");
-eraserBtn.addEventListener("click",function() {
-    isErasing = !isErasing;
-    eraserBtn.textContent = "PEN";
-    eraserBtn.textContent = isErasing ? "PEN":"ERASER";
-});
 
 // pixels button and modal display
 const pixelBtn = document.querySelector(".pixelbtn");
@@ -95,8 +69,10 @@ function hidePixelModal() {
 function showPixelModal() {
   pixelModal.classList.toggle("hidden");
 };
+
 pixelBtn.addEventListener("click",showPixelModal);
 closeBtn.addEventListener("click",hidePixelModal);
+
 
 // change the pixels in the modal
 const userInput = document.querySelector(".change-pixel-input");
@@ -113,4 +89,27 @@ function applyPixelChange() {
   userInput.value = "";
 };
 applyBtn.addEventListener("click",applyPixelChange);
+
+
+// drawing 
+gridContainer.addEventListener("mousedown", function(e) {
+  e.preventDefault();
+  if (e.target.classList.contains("cell-item")) {
+    e.target.style.backgroundColor = selectColor;
+    isSketching = true;
+  }
+});
+gridContainer.addEventListener("mouseup",function (){
+  isSketching = false;
+});
+gridContainer.addEventListener("mousemove", function(e) {
+  if(isSketching && e.target.classList.contains("cell-item")) {
+    e.target.style.backgroundColor = selectColor;
+  }
+});
+gridContainer.addEventListener("mouseleave",function() {
+  isSketching = false;
+})
+  
+
 
